@@ -1,17 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 
-import { PeopleConsumer } from "../contexts/people";
-import { connectConsumer } from "../util/common";
+import PeopleContext from "../contexts/people";
 
 const Total = props => {
-  const { total, loading } = props;
+  const { list, loading } = useContext(PeopleContext);
+  const total = list.length;
   if (loading) {
     return <div>Loading...</div>;
   }
   return <div>Total: {total}</div>;
 };
 
-export default connectConsumer(PeopleConsumer)(({ list, loading }) => ({
-  total: list.length,
-  loading
-}))(Total);
+export default Total;

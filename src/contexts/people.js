@@ -1,4 +1,4 @@
-import React, { Component, createContext } from "react";
+import React, { createContext, useState, useCallback } from "react";
 
 const context = createContext();
 const { Provider, Consumer } = context;
@@ -6,20 +6,12 @@ const { Provider, Consumer } = context;
 import { fetchPeople } from "../data/api";
 
 const toId = ({ url }) => url;
-class PeopleProvider extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      people: {},
-      list: [],
-      fetchPeople: this.fetchPeople.bind(this),
-      loading: false
-    };
-  }
-  fetchPeople = sort => {
-    this.setState({ loading: true });
+const PeopleProvider = ({ children }) => {
+  const _fetchPeople = useCallback(sort => {
+    setState(state => ({ ...state, loading: true }));
     return fetchPeople(sort).then(data => {
-      this.setState(state => ({
+      setState(state => ({
+        ...state,
         people: data.reduce(
           (acc, person) => ({
             ...acc,
@@ -32,12 +24,15 @@ class PeopleProvider extends Component {
       }));
       return data;
     });
-  };
-  render() {
-    const { children } = this.props;
-    return <Provider value={this.state}>{children}</Provider>;
-  }
-}
+  });
+  const [state, setState] = useState({
+    people: {},
+    list: [],
+    fetchPeople: _fetchPeople,
+    loading: false
+  });
+  return <Provider value={state}>{children}</Provider>;
+};
 
 export default context;
 export { PeopleProvider, Consumer as PeopleConsumer };

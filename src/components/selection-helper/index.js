@@ -1,3 +1,4 @@
+// Copied from: https://github.com/cgood92/react-selection-helper/blob/master/src/index.js
 import { Component } from "react";
 
 const isCtrl = e => e.metaKey || e.ctrlKey;

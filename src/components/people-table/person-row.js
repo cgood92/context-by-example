@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/core";
 
-import { PeopleConsumer } from "../../contexts/people";
-import { SelectableListConsumer } from "../../contexts/selectable-list";
-import { compose, connectConsumer } from "../../util/common";
+import PeopleContext from "../../contexts/people";
+import SelectableListContext from "../../contexts/selectable-list";
 
 const selected = css`
   background-color: #444444 !important;
@@ -22,8 +21,14 @@ const Row = styled("div")`
   }
 `;
 
-const PersonRow = props => {
-  const { id, name, isSelected, onSelect } = props;
+const PersonRow = ({ id }) => {
+  const {
+    people: {
+      [id]: { name }
+    }
+  } = useContext(PeopleContext);
+  const { selectedIds, onSelect } = useContext(SelectableListContext);
+  const isSelected = selectedIds.includes(id);
   return (
     <Row onClick={onSelect(id)} selected={isSelected}>
       {name}
@@ -31,12 +36,4 @@ const PersonRow = props => {
   );
 };
 
-export default compose(
-  connectConsumer(PeopleConsumer)(({ people }, { id }) => people[id]),
-  connectConsumer(SelectableListConsumer)(
-    ({ selectedIds, onSelect }, { id }) => ({
-      isSelected: selectedIds.includes(id),
-      onSelect
-    })
-  )
-)(PersonRow);
+export default PersonRow;

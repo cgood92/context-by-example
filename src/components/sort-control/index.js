@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import ArrowUp from "./arrow";
 import styled from "@emotion/styled";
 import Button from "./button";
-import { ViewPrefConsumer } from "../../contexts/view-prefs";
-import { connectConsumer } from "../../util/common";
+import ViewPrefContext from "../../contexts/view-prefs";
 
 const DecoratedArrow = styled(ArrowUp)`
   transition: 0.2s transform;
@@ -15,7 +14,7 @@ const DecoratedArrow = styled(ArrowUp)`
 `;
 
 const SortControl = props => {
-  const { sort, toggle } = props;
+  const { sort, toggle } = useContext(ViewPrefContext);
   return (
     <div>
       Sort:
@@ -26,7 +25,4 @@ const SortControl = props => {
   );
 };
 
-export default connectConsumer(ViewPrefConsumer)(({ sort, toggle }) => ({
-  sort,
-  toggle
-}))(SortControl);
+export default SortControl;
