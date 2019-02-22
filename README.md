@@ -2,8 +2,13 @@
 
 ### The example
 
-To see how we use `context`, in the "traditional" `react` way, see: [https://codesandbox.io/s/github/cgood92/context-by-example/tree/master](https://codesandbox.io/s/github/cgood92/context-by-example/tree/master).
-To see how the same code can be simplified by using `react hooks`, see: [https://codesandbox.io/s/github/cgood92/context-by-example/tree/hooks](https://codesandbox.io/s/github/cgood92/context-by-example/tree/hooks).
+To see how we use `context`, in the "traditional" `react` way, see:
+
+[https://codesandbox.io/s/github/cgood92/context-by-example/tree/master](https://codesandbox.io/s/github/cgood92/context-by-example/tree/master).
+
+To see how the same code can be simplified by using `react hooks`, see:
+
+[https://codesandbox.io/s/github/cgood92/context-by-example/tree/hooks](https://codesandbox.io/s/github/cgood92/context-by-example/tree/hooks).
 
 ### The Expirement
 `redux` is great.  It offers a lot, and is an industry favorite.
