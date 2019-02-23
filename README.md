@@ -3,9 +3,11 @@
 ### The example
 
 See an example of using `context` with `react` `hooks`:
+
 [https://codesandbox.io/s/github/cgood92/context-by-example/tree/hooks](https://codesandbox.io/s/github/cgood92/context-by-example/tree/hooks).
 
 See an example of using `context`, in the "traditional" `react` way:
+
 [https://codesandbox.io/s/github/cgood92/context-by-example/tree/master](https://codesandbox.io/s/github/cgood92/context-by-example/tree/master).
 
 ### Our departure from redux
